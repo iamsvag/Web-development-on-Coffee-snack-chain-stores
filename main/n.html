@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>Coffee Break</title>
+
+    <link rel="stylesheet" type="text/css" href="n.css"
+
+<body>
+<!--***********TOPBAR************-->
+<ul class="nav">
+<br>  
+<h1 class="ctitle"><em>COFFEE BREAK</em></h1> 
+    <img src="coffee-break.png" class='coffeebreak'>
+</ul>
+<!-- ************SIDEBAR**************-->
+<div class="sidenav">
+
+<h1><i>Κατάλογος</i></h1>
+<!--***************COFFEE**************-->
+<a class="coffee"><i>Καφέ</i></a>
+
+<div class="coffee_input">
+    <span class="helper"></span>
+    <div>
+        <div class="popupCloseButton">X</div>
+        <div class="fade0">
+        <img src="greek-coffee.png" class='image_coffee'>
+        <div class="middle0">
+        <div class="text0">1.10€</div>
+      </div>
+      </div>
+        <strong class='greekcoffee'>Ελληνικός</strong>
+        <input type="number" class="quantity" min="0" max="99">
+
+        <div class="fade1">
+        <img src="frappe.png" class='image_frape'>
+        <div class="middle1">
+        <div class="text1">1.20€</div>
+      </div>
+      </div>
+        <strong class='frapecoffee'>Φραπέ</strong>
+        <input type="number" class="quantity1" min="0" max="99">
+
+        <div class="fade2">
+        <img src="espresso.png" class='image_espresso'>
+        <div class="middle2">
+        <div class="text2">1.30€</div>
+      </div>
+      </div>
+        <strong class='espressocoffee'>Εσπρέσο</strong>
+        <input type="number" class="quantity2" min="0" max="99">
+
+        <div class="fade3">
+        <img src="filtrou.png" class='image_filtrou'>
+        <div class="middle3">
+        <div class="text3">1.50€</div>
+      </div>
+      </div>
+        <strong class='filtroucoffee'>Φίλτρου</strong>
+        <input type="number" class="quantity3" min="0" max="99">
+
+        <div class="fade4">
+        <img src="cappuccino.png" class='image_cap'>
+        <div class="middle4">
+        <div class="text4">1.50€</div>
+      </div>
+      </div>
+        <strong class='capcoffee'>Καπουτσίνο</strong>
+        <input type="number" class="quantity4" min="0" max="99">
+
+
+        <button class='buttonadd' onclick='addtocart()'>Προσθήκη στο καλάθι</button> 
+        <button class='buttonreset'>Επαναφορά</button>       
+    </div>
+    </div>
+
+<!--******************************FOOD******************************-->
+<a class="food"><i>Σνακ</i></a>
+
+<div class="food_input">
+    <span class="helper"></span>
+    <div>
+        <div class="popupCloseButton1">X</div>
+        <div class="fade0">
+        <img src="cake.jpg" class='image_coffee'>
+        <div class="middle0">
+        <div class="text0">0.70€</div>
+      </div>
+      </div>
+        <strong class='greekcoffee'>Κέικ</strong>
+        <input type="number" class="quantity5" min="0" max="99">
+
+        <div class="fade5">
+        <img src="koulouri.jpg" class='image_koulouri'>
+        <div class="middle5">
+        <div class="text5">0.50€</div>
+        </div>
+        </div>
+        <strong class='frapecoffee'>Κουλούρι</strong>
+        <input type="number" class="quantity6" min="0" max="99">
+
+        <div class="fade2">
+        <img src="tost.jpg" class='image_espresso'>
+        <div class="middle2">
+        <div class="text2">1.00€</div>
+        </div>
+        </div>
+        <strong class='espressocoffee'>Τοστ</strong>
+        <input type="number" class="quantity7" min="0" max="99">
+
+        <div class="fade3">
+        <img src="xortopita.jpg" class='image_filtrou'>
+        <div class="middle3">
+        <div class="text3">1.00€</div>
+        </div>
+        </div>
+        <strong class='xortopita'>Χορτόπιτα</strong>
+        <input type="number" class="quantity8" min="0" max="99">
+
+            <div class="fade6">
+            <img src="tyropita.jpg" class='image_tyr'>
+            <div class="middle6">
+            <div class="text6">1.10€</div>
+            </div>
+            </div>
+            <strong class='tyropita'>Τυρόπιτα</strong>
+            <input type="number" class="quantity9" min="0" max="99">
+        
+
+        <button class='buttonadd' onclick='addtocart()'>Προσθήκη στο καλάθι</button> 
+        <button class='buttonreset1'>Επαναφορά</button>   
+    </div>
+</div>
+    </div>
+<!--***********************************************************-->
+
+<div class="order_input">
+    <span class="helper"></span>
+    <div>
+        <div class="popupCloseButton2">X</div>
+        <h3 class="beforesend">Σύνοψη παραγγελίας</h3><br><br>
+        <button class="button_send">Αποστολή Παραγγελίας</button>
+        <p class="beforesend" id='id10'></p><br>
+        <h3 class="maptext">Βρες τη διεύθυνση στο χάρτη</h3><br><br>
+        <p class="total_pricee">Σύνολο: </p>
+        <p class="streetn">Διεύθυνση : </p>
+        
+        <input type="text" class="street" id="street" autocomplete="off" >
+       
+        <button class='checkonmap' >Αναζήτηση</button>
+        <!--<button class="map"> Εισαγωγή από χάρτη</button>-->
+        <div id="mapdiv"></div>
+        <p class="street_error" ></p>
+    </div>
+</div>
+<!--******************************-->
+<!--******************************ΛΟΓΑΡΙΑΣΜΟΣ******************************-->
+<button class="open-button" onclick="openForm()">ΛΟΓΑΡΙΑΣΜΟΣ</button>
+<div class="form-popup" id="myForm">
+  <form  class="form-container">
+      <p class="thisemail"></p>
+    <button type="submit" class="btn">Αποσύνδεση</button>
+    <button type="button" class="cancel" onclick="closeForm()">Κλείσιμο</button>
+  </form>
+</div>  
+
+<!--******************************ΚΑΛΑΘΙ******************************-->
+<button class="open-button1" onclick="openForm1()">ΚΑΛΑΘΙ</button>
+
+<div class="form-popup1" id="myForm1">
+  <form class="form-container1">
+    <p id='id0'></p><br>
+    <p id='id1'></p><br>
+    <p id='id2'></p><br>
+    <p id='id3'></p><br>
+    <p id='id4'></p><br>
+    <p id='id5'></p><br>
+    <p id='id6'></p><br>
+    <p id='id7'></p><br>
+    <p id='id8'></p><br>
+    <p id='id9'></p><br>
+    <p id='id20'></p><br>
+    <button type="button" class="btn1" onclick="continueorder()">Συνέχεια</button>
+    <button type="button" class="btn1 cancel1" onclick="closeForm1()">Close</button>
+  </form>
+
+</div>
+<p class="check"></p>
+
+<!--******************************-->  
+
+      
+      
+      
+      
+<script src="https://code.jquery.com/jquery-1.8.0.min.js
+"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js
+"></script>
+          <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js
+"></script>
+          <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js
+"></script>
+      
+
+<script src="http://peterolson.github.com/BigInteger.js/BigInteger.min.js"></script>
+      
+<script>
+    
+   /*document.getElementsByClassName('checkonmap').addEventListener('click', function() {
+          
+        });*/
+    
+    
+    
+   
+      function initMap(){
+        var input = document.getElementById('street');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+          var markers = [];
+          var options = {
+              zoom:12,
+              center:{lat:38.246639,lng:21.734573}
+          }
+        
+        var mapa = new google.maps.Map(document.getElementById('mapdiv'), options);
+        var geocoder = new google.maps.Geocoder;
+          var geocodern = new google.maps.Geocoder();
+          
+          $('.checkonmap').click(function(){
+              for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+              }
+        geocodeAddressn(geocodern, mapa);
+    });
+        
+        var infowindow = new google.maps.InfoWindow;
+          var Notara={lat:38.263117, lng:21.743875};
+            var Likonos={lat:38.236191, lng:21.736115};
+            var Petmeza={lat:38.292156, lng:21.768907};
+            var Gennadiou={lat:38.241642, lng:21.729236};
+            
+          google.maps.event.addListener(mapa, 'click', function(event){
+              for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+              }
+                addMarker({coords:event.latLng});
+              
+                
+            });
+          function addMarker(props){
+              //setMapOnAll(null);
+              var marker = new google.maps.Marker({
+                  position:props.coords,
+                  
+                  map:mapa
+              });
+              geocodeLatLng(geocoder, mapa, infowindow, props.coords);
+              //alert(props.coords);
+              markers.push(marker);
+          }
+              /*var marker = new google.maps.Marker({
+                 position:Notara,
+                 map:mapa
+              });
+          var marker = new google.maps.Marker({
+                 position:Likonos,
+                 map:mapa
+              });
+          var marker = new google.maps.Marker({
+                 position:Petmeza,
+                 map:mapa
+              });
+          var marker = new google.maps.Marker({
+                 position:Gennadiou,
+                 map:mapa
+              });*/
+          var catched_address='';
+          function geocodeLatLng(geocoder, map, infowindow, input) {
+              
+       // var input = event.latLng;
+              
+              input = input.toString().split('(', 2)[1];
+              input = input.toString().split(')', 2)[0];
+        var latlngStr = input.toString().split(',', 2);
+        var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+        geocoder.geocode({'location': latlng}, function(results, status) {
+          if (status === 'OK') {
+            if (results[0]) {
+              mapa.setZoom(11);
+              var marker = new google.maps.Marker({
+                position: latlng,
+                map: mapa
+              });
+                markers.push(marker);
+               
+              infowindow.setContent(results[0].formatted_address);
+                catched_address = results[0].formatted_address;
+                $('.street').val(catched_address);
+              infowindow.open(mapa, marker);
+            } else {
+              window.alert('No results found');
+            }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
+      }
+          var syntetagmenes;
+          function geocodeAddressn(geocodern, resultsMap) {
+        var address = $('.street').val();
+        geocodern.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+            $('.check').val('true');
+            resultsMap.setCenter(results[0].geometry.location);
+              syntetagmenes = results[0].geometry.location;
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location
+            });
+              markers.push(marker);
+          } else {
+            $('.street').val('');
+            //alert('Geocode was not successful for the following reason: ' + status);
+            $('.check').val('false');
+          }
+        });
+      }
+        
+      }
+      </script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=&libraries=places&callback=initialize&key=&callback=initMap">
+</script>
+<script src="n.js"></script>
+  </body>
+      
+  </head>
+
+</html>

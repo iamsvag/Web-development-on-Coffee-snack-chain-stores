@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+
+    <title>Coffee Break</title>
+    <link rel="stylesheet" type="text/css" href="delivery.css"
+  <body>
+      <div class="delivery"> 
+            <h1 align="center"><em>COFFEE BREAK</em></h1>
+            <h3 align="center">Στοιχεία Διανομέα</h3>
+            <form >
+              <!--<p>Username</p>-->
+            <div align="center"class="inputs">
+                <p class="username">Username:</p> <p class="thisdeliver"></p>
+                <p class="wordskat">Κατάσταση:</p>
+                <select class="state">
+                    <option>Μη Ενεργός</option>
+                    <option>Ενεργός</option>
+                </select>
+              <!--<p>Password Den doulevei me <button></p>--><br><br><br>
+    
+                
+                
+                
+<div class="order_input">
+    <span class="helper"></span>
+    <div>
+        <h4 class="maptext">Εισαγάγετε διεύθυνση από τον χάρτη:</h4><br><br>
+        <p class="streetn">Διεύθυνση : </p>
+        <input type="text" class="street" id="street">
+        <input type="button" class='checkonmap' value="Αναζήτηση">
+        <input type="button" class='logout' value="Αποσύνδεση">
+        <!--<button class="map"> Εισαγωγή από χάρτη</button>-->
+        <div id="mapdiv"></div>
+        <p class="street_error" ></p>
+    </div>
+</div>
+                
+                
+                
+              <input type="button" class="button1" value="Συνέχεια"/>
+              
+            </div>   
+            </form>
+            <img src="coffee-break.png" class='coffeebreak'>
+        </div>
+      
+            
+<script src="https://code.jquery.com/jquery-1.8.0.min.js
+"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js
+"></script>
+          <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js
+"></script>
+          <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js
+"></script>
+      
+
+<script src="http://peterolson.github.com/BigInteger.js/BigInteger.min.js"></script>
+      
+<script>
+    
+   /*document.getElementsByClassName('checkonmap').addEventListener('click', function() {
+          
+        });*/
+    
+    
+    
+    
+      function initMap(){
+        var input = document.getElementById('street');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+          var markers = [];
+          var options = {
+              zoom:12,
+              center:{lat:38.246639,lng:21.734573}
+          }
+        
+        var mapa = new google.maps.Map(document.getElementById('mapdiv'), options);
+        var geocoder = new google.maps.Geocoder;
+          var geocodern = new google.maps.Geocoder();
+          
+          $('.checkonmap').click(function(){
+              for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+              }
+        geocodeAddressn(geocodern, mapa);
+    });
+        
+
+
+
+    var sem=0;
+
+/* Thelw to idio na kanei kai h eisodos ws elegxo*/
+        $('.button1').click(function(){
+              for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+              }
+              geocodeAddressn(geocodern, mapa);
+              console.log($('.street').val());
+              var address_of_d=$('.street').val();
+              var availability=$('.state').val();
+              if (availability.toString() == 'Μη Ενεργός'){
+                  availability = '0';
+              }
+              else{
+                  availability = '1';
+              }
+              console.log(availability);
+              $.post('delivery.php', {address_of_d: address_of_d, availability: availability.toString()}, function(data) {
+                    console.log(data);
+                });
+        });
+
+
+          
+        var infowindow = new google.maps.InfoWindow;
+          var Notara={lat:38.263117, lng:21.743875};
+            var Likonos={lat:38.236191, lng:21.736115};
+            var Petmeza={lat:38.292156, lng:21.768907};
+            var Gennadiou={lat:38.241642, lng:21.729236};
+            
+          google.maps.event.addListener(mapa, 'click', function(event){
+              for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+              }
+                addMarker({coords:event.latLng});
+              
+                
+            });
+          function addMarker(props){
+              //setMapOnAll(null);
+              var marker = new google.maps.Marker({
+                  position:props.coords,
+                  
+                  map:mapa
+              });
+              geocodeLatLng(geocoder, mapa, infowindow, props.coords);
+              //alert(props.coords);
+              markers.push(marker);
+          }
+              /*var marker = new google.maps.Marker({
+                 position:Notara,
+                 map:mapa
+              });
+          var marker = new google.maps.Marker({
+                 position:Likonos,
+                 map:mapa
+              });
+          var marker = new google.maps.Marker({
+                 position:Petmeza,
+                 map:mapa
+              });
+          var marker = new google.maps.Marker({
+                 position:Gennadiou,
+                 map:mapa
+              });*/
+          var catched_address='';
+          function geocodeLatLng(geocoder, map, infowindow, input) {
+              
+       // var input = event.latLng;
+              //stelnei thn dieu8insi apo to marker sto shmeio eisodou dieu9insis
+              input = input.toString().split('(', 2)[1];
+              input = input.toString().split(')', 2)[0];
+        var latlngStr = input.toString().split(',', 2);
+        var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+        geocoder.geocode({'location': latlng}, function(results, status) {
+          if (status === 'OK') {
+            if (results[0]) {
+              mapa.setZoom(11);
+              var marker = new google.maps.Marker({
+                position: latlng,
+                map: mapa
+              });
+                markers.push(marker);
+               
+              infowindow.setContent(results[0].formatted_address);
+                catched_address = results[0].formatted_address;
+                $('.street').val(catched_address);
+              infowindow.open(mapa, marker);
+            } else {
+              window.alert('No results found');
+            }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
+      }
+          var syntetagmenes;
+          function geocodeAddressn(geocodern, resultsMap) {
+        var addresss = $('.street').val();
+        geocodern.geocode({'address': addresss}, function(results, status) {
+          if (status === 'OK') {
+              resultsMap.setCenter(results[0].geometry.location);
+              syntetagmenes = results[0].geometry.location;
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location
+            });
+              markers.push(marker);
+          } else {
+           $('.street').val('');
+            console.log('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
+
+      }
+      </script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=&libraries=places&callback=initialize&key=&callback=initMap">
+</script>
+<script src="delivery_process.js"></script>
+  </body>
+  
+          </head>
+
+</html>

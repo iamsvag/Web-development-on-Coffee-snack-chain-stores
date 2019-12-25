@@ -1,0 +1,36 @@
+#mapdiv{
+    position: absolute;
+        left:1222%;
+    height: 370px;
+    width: 400px;
+}
+@media only screen and (max-width: 768px) {
+body{
+  background-color: orange;
+    
+    }
+
+    #mapdiv{
+    position: absolute;
+    top:18%;
+        left:5.3%;
+    height: 370px;
+    width: 90%;
+}
+ .backbtn{
+  width: 10%;
+  height: 5%;
+  position: absolute;
+  top: 2.5%;
+  left:2%;
+  
+ }
+.delivered{
+    position: absolute;
+    bottom:15%;
+    left:37%;
+   
+}
+
+
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Coffee Break</title>
+    <link rel="stylesheet" type="text/css" href="delivery1.css"
+  <body>
+      <div class="delivery"> 
+            <h1 align="center"><em>COFFEE BREAK</em></h1>
+            <img src="back.jpg" class='backbtn'>
+            <h3 align="center" class="magazi"></h3>            
+        <div id="mapdiv"></div>
+        <input class="delivered" type="button" value="Παραδόθηκε">
+                
+                
+        
+      
+            
+<script src="https://code.jquery.com/jquery-1.8.0.min.js
+"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js
+"></script>
+          <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js
+"></script>
+          <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js
+"></script>
+      
+
+<script src="http://peterolson.github.com/BigInteger.js/BigInteger.min.js"></script>
+      
+<script>
+    
+   /*document.getElementsByClassName('checkonmap').addEventListener('click', function() {
+          
+        });*/
+
+var customer_address;
+    var jqxhr = $.post('delivery1.php', function(data) {
+                    console.log("-----------------------------");
+                    console.log(data);
+                    customer_address=data;
+                });
+    
+    
+    
+      function initMap(){
+          var markers = [];
+          var options = {
+              zoom:12,
+              center:{lat:38.246639,lng:21.734573}
+          }
+        
+        var mapa = new google.maps.Map(document.getElementById('mapdiv'), options);
+        var geocoder = new google.maps.Geocoder;
+          var geocodern = new google.maps.Geocoder();
+          
+          var infowindow = new google.maps.InfoWindow;
+          jqxhr.done(function(){
+            geocodeAddressn(geocodern, mapa);
+          });
+        
+      
+    var sem=0;
+
+          var syntetagmenes;
+          function geocodeAddressn(geocodern, resultsMap) {
+        var addresss = customer_address;
+        console.log(addresss);
+        geocodern.geocode({'address': addresss}, function(results, status) {
+          console.log(addresss);
+          if (status === 'OK') {
+              resultsMap.setCenter(results[0].geometry.location);
+              syntetagmenes = results[0].geometry.location;
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location
+            });
+              markers.push(marker);
+              infowindow.setContent(results[0].formatted_address);
+              catched_address = results[0].formatted_address;
+              infowindow.open(mapa, marker);
+          } else {
+            console.log('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
+
+      }
+
+      </script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeDpUVOEEzf5QMxM5O0MMN1wCirZyoYFQ&callback=initMap">
+</script>
+<script src="delivery1_process.js"></script>
+  </body>
+  
+          </head>
+
+</html>
